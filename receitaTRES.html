@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terceira Receita</title>
+</head>
+
+<body>
+    <div id="divBotao"><button id="botaoCarregar">Carregando cervejas...</button></div>
+    <div id="divCerveja"></div>
+</body>
+
+<style>
+    #divCerveja {
+        transition: opacity 0.5s ease;
+        opacity: 1;
+    }
+</style>
+
+<script>
+    function carregarDiv(){
+        let div = document.getElementById("divCerveja")
+
+        div.style.opacity = 0
+
+        setTimeout(function() {
+            if (div.innerHTML === "") {
+                div.innerHTML = `<h1>Guinness</h1>`
+            } else {
+                div.innerHTML = ""
+            }
+            div.style.opacity = 1
+        }, 500)
+    }
+
+    let botao = document.getElementById("botaoCarregar")
+    botao.addEventListener("click", carregarDiv)
+</script>
+</html>

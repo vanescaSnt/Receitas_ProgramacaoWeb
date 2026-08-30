@@ -1,0 +1,58 @@
+p.verso{
+    color: blue;
+}
+
+p.mote{
+    color: red;
+}
+
+
+.link{
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.link:hover{
+    color: red;
+}
+
+.link:visited{
+    color: rgb(237, 158, 13);
+}
+
+.imageJoao{
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+}
+.joaoPoeta{
+    display: flex;
+    flex-direction: column;
+}
+
+.poeta img{
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border: 1px solid black;
+}
+
+td {
+    background-color: #93e995;
+    padding: 8px 12px;
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    display: flex;
+}
