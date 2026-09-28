@@ -15,8 +15,9 @@ Cada receita está em seu próprio diretório. A página principal (`index.html`
 | 3 | JavaScript básico | [Receita 3](Receita3/index.html) |
 | 4 | JavaScript básico 2 | [Receita 4](Receita4/index.html) |
 | 5 | JS - Arrow e Callback Functions | [Receita 5](Receita5/index.html) |
-| 6 | Objetos JSON | [Receita 6](Receita6/indext.html) |
-| 7 | Fetch | [Receita 7](Receita7/indext.html) |
+| 6 | Objetos JSON | [Receita 6](Receita6/index.html) |
+| 7 | Fetch | [Receita 7](Receita7/index.html) |
+| 8 | Promessas | [Receita 8](Receita8/index.html) |
 
 ## Como visualizar
 
