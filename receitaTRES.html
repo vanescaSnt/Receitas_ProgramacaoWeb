@@ -7,26 +7,19 @@
 </head>
 
 <body>
-    <div id="divBotao"><button id="botaoCarregar">Carregando cervejas...</button></div>
-    <div id="divCerveja"></div>
+    <div id="divLink"><a href="#" id="linkCarregar">Carregando pratos...</a></div>
+    <div id="divPrato"></div>
 </body>
 
-<style>
-    #divCerveja {
-        transition: opacity 0.5s ease;
-        opacity: 1;
-    }
-</style>
-
 <script>
-    function carregarDiv(){
-        let div = document.getElementById("divCerveja")
+    const carregarDiv = () => {
+        const div = document.getElementById("divPrato")
 
         div.style.opacity = 0
 
-        setTimeout(function() {
+        setTimeout(() => {
             if (div.innerHTML === "") {
-                div.innerHTML = `<h1>Guinness</h1>`
+                div.innerHTML = `<h1>Feijoada</h1>`
             } else {
                 div.innerHTML = ""
             }
@@ -34,7 +27,11 @@
         }, 500)
     }
 
-    let botao = document.getElementById("botaoCarregar")
-    botao.addEventListener("click", carregarDiv)
+    const link = document.getElementById("linkCarregar")
+    link.addEventListener("click", (evento) => {
+        evento.preventDefault()
+        carregarDiv()
+    })
 </script>
+
 </html>
