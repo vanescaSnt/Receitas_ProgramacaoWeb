@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sexta Receita</title>
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 30px;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
+
+    th, td {
+        background-color: #ebd9f7;
+        border: 1px solid #562378;
+        padding: 8px 16px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #562378;
+        color: white;
+    }
+</style>
+
+<body>
+    <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+    <div id="cervejasDiv"></div>
+</body>
+
+<script>
+    let cervejas = [
+        { name: "Guiness", alcohol: "10%", style: "Imperial Stout", ibu: "45" },
+        { name: "Desperados", alcohol: "6%", style: "Lager", ibu: "20" },
+        { name: "Becks", alcohol: "5%", style: "Pilsen", ibu: "25" }
+    ]
+
+    const carregarDiv = (
+        cs,
+        idDiv = "cervejasDiv",
+        cabecalhos = ["Nome", "Álcool", "Estilo", "Amargor"],
+        propriedades = ["name", "alcohol", "style", "ibu"]
+    ) => {
+        const div = document.getElementById(idDiv)
+        const cabecalhoTab = cabecalhos.map( c => `<th>${c}</th>` )
+        const linhaTab = cs.map( item => {
+            const colunasTab = propriedades.map( p => `<td>${item[p]}</td>` )
+            return `<tr>${colunasTab.join("")}</tr>`
+        })
+
+        div.innerHTML = `
+            <table>
+                <tr>${cabecalhoTab.join("")}</tr>
+                ${linhaTab.join("\n")}
+            </table>`
+    }
+
+    let botao = document.getElementById("botaoCarregar")
+    botao.addEventListener("click", () => carregarDiv(cervejas) )
+</script>
+</html>
