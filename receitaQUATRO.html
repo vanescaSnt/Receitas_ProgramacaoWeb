@@ -31,48 +31,49 @@
 </style>
 
 <body>
-    <div id="meu amor"><button id="botaoCarregar">Carregando cervejas...</button></div>
-    <button id="botaoOrdenar">Ordenar Cervejas</button>  
-    <button id="botaoEmbaralhar">Embaralhar Cervejas</button>        
-</body>   
+    <div id="meu amor"><a href="#" id="linkCarregar">Carregando pratos...</a></div>
+    <a href="#" id="linkOrdenar">Ordenar Pratos</a>
+    <a href="#" id="linkEmbaralhar">Embaralhar Pratos</a>
+</body>
 
 <script>
-    let cervejas = ["Guiness", "Desperados", "Becks"]
+    let pratos = ["Feijoada", "Moqueca", "Escondidinho"]
 
-    function transformar(item){
-        // return `<div class="cervejas">${item}</div>`
-        return `<tr><td>${item}</td></tr>`
+    const transformar = item => `<tr><td>${item}</td></tr>`
+
+    const carregarDiv = () => {
+        const div = document.getElementById("meu amor")
+        const linhas = pratos.map(transformar)
+        div.innerHTML = `<table class="tabelaPratos"><tr><th>Pratos</th></tr>${linhas.join("\n")}</table>`
     }
 
-    function carregarDiv(){
-        let div = document.getElementById("meu amor")
-
-        //let cervejasHtml = [`<h1>${cervejas[0]}</h1>`,`<h1>${cervejas[1]}</h1>`, `<h1>${cervejas[2]}</h1>`] 
-        //let cervejasHtml = cervejas.map(transformar) 
-        //div.innerHTML = `${cervejasHtml.join("\n")}`
-
-        let linhas = cervejas.map(transformar)
-        div.innerHTML = `<table class="tabelaCervejas"><tr><th>Bebidas</th></tr>${linhas.join("\n")}</table>`
-    }
-
-    function ordenarCervejas(){
-        cervejas.sort() 
+    const ordenarPratos = () => {
+        pratos.sort()
         carregarDiv()
     }
 
-    function embaralharCervejas(){
-        cervejas.sort(() => Math.random() - 0.5)
+    const embaralharPratos = () => {
+        pratos.sort(() => Math.random() - 0.5)
         carregarDiv()
     }
 
-    let botao = document.getElementById("botaoCarregar")
-    botao.addEventListener("click", carregarDiv)    
-    
-    let botaoOrdenar = document.getElementById("botaoOrdenar")
-    botaoOrdenar.addEventListener("click", ordenarCervejas)
+    const linkCarregar = document.getElementById("linkCarregar")
+    linkCarregar.addEventListener("click", (evento) => {
+        evento.preventDefault()
+        carregarDiv()
+    })
 
-    let botaoEmbaralhar = document.getElementById("botaoEmbaralhar")
-    botaoEmbaralhar.addEventListener("click", embaralharCervejas)
+    const linkOrdenar = document.getElementById("linkOrdenar")
+    linkOrdenar.addEventListener("click", (evento) => {
+        evento.preventDefault()
+        ordenarPratos()
+    })
+
+    const linkEmbaralhar = document.getElementById("linkEmbaralhar")
+    linkEmbaralhar.addEventListener("click", (evento) => {
+        evento.preventDefault()
+        embaralharPratos()
+    })
 </script>
 
 </html>
