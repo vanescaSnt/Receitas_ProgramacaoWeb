@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quinta Receita</title>
+</head>
+<body>
+    <div><a href="#" id="linkCarregar">Carregando pratos...</a></div>
+    <div id="divComidas"></div>      
+</body>  
+
+<script>
+    const cardapio = ["Feijoada", "Moqueca", "Escondidinho"]
+
+    const carregarDiv = (pratos) => {
+        const div = document.getElementById("divComidas")
+        const pratosHtml = pratos.map( item => `<h1>${item}</h1>` )
+        div.innerHTML = `${pratosHtml.join("\n")}`
+    }
+
+    const link = document.getElementById("linkCarregar")
+    link.addEventListener("click", (evento) => {
+        evento.preventDefault()
+        carregarDiv(cardapio)
+    })
+</script> 
+
+
+</html>
