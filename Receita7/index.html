@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sétima Receita</title>
+</head>
+
+<style>
+    body {
+        font-family:'Courier New', Courier, monospace;
+        width: 500px;
+    }
+
+    h2 {
+        margin-top: 40px;
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 6px;
+    }
+
+    button {
+        background-color: #007BFF; 
+        color: white;
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 16px;                   
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .receita {
+        display: flex;
+        gap: 16px;
+        background-color: white;
+        border: 1px solid #d0d7de;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .receita img {
+        width: 120px;
+        height: 120px;
+        border-radius: 8px;
+    }
+
+    .receita h3, .categoria h3 {
+        margin: 0 0 8px 0;
+    }
+
+    .receita p {
+        margin: 4px 0;
+    }
+
+    .categoria {
+        background-color: white;
+        border: 1px solid #d0d7de;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    #categoriaDiv {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 12px;
+    }
+
+    table {
+        border-collapse: collapse;
+        background-color: white;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px 16px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #393939;
+        color: white;
+    }
+</style>
+
+<body>
+    <div><button id="botaoCarregar">Carregando receitas...</button></div>
+    <div id="receitaDiv"></div>
+
+    <div><button id="botaoCategorias">Carregando categorias...</button></div>
+    <div id="categoriaDiv"></div>
+
+    <div><button id="botaoTabela">Carregando ingredientes...</button></div>
+    <div id="tabelaDiv"></div>
+</body>
+
+<script src="tabela.js"></script>
+
+<script>
+    let receitas = []
+
+    const carregarDiv = rc => {
+        const div = document.getElementById("receitaDiv")
+        const itensRec = rc.map( ({strMeal, strCategory, strArea, strMealThumb}) => `
+            <div class="receita">
+                <img src="${strMealThumb}">
+                <div>
+                    <h3>${strMeal}</h3>
+                    <p>Categoria: ${strCategory}</p>
+                    <p>País: ${strArea}</p>
+                </div>
+            </div>` )
+        div.innerHTML = `${itensRec.join("\n")}`
+    }
+
+    async function carregarReceitas(){
+        try{
+            let res = await fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+            let dados = await res.json()
+            receitas = dados.meals
+            carregarDiv(receitas)
+        }catch(err){
+            document.getElementById("receitaDiv").innerHTML = "Não foi possível carregar as receitas."
+        }
+    }
+
+    let categorias = []
+
+    const carregarCategoriasDiv = cats => {
+        const div = document.getElementById("categoriaDiv")
+        const itensCat = cats.slice(0, 4).map( ({strCategory, strCategoryDescription}) => `
+            <div class="categoria">
+                <h3>${strCategory}</h3>
+                <p>${strCategoryDescription.slice(0, 150)}...</p>
+            </div>` )
+        div.innerHTML = `${itensCat.join("\n")}`
+    }
+
+    async function carregarCategorias(){
+        const div = document.getElementById("categoriaDiv")
+        try{
+            let res = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
+            let dados = await res.json()
+            categorias = dados.categories
+            carregarCategoriasDiv(categorias)
+        }catch(err){
+            console.error(err)
+            div.innerHTML = "Não foi possível carregar as categorias."
+        }
+    }
+
+    let botao = document.getElementById("botaoCarregar")
+    botao.addEventListener("click", () => carregarReceitas() )
+
+    let botaoCategorias = document.getElementById("botaoCategorias")
+    botaoCategorias.addEventListener("click", () => carregarCategorias() )
+
+
+    async function carregarTabela(){
+        const div = document.getElementById("tabelaDiv")
+        try{
+            let res = await fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+            let dados = await res.json()
+            const receita = dados.meals[0]
+
+            const ingredientes = []
+            for (let i = 1; i <= 20; i++) {
+                const ingrediente = receita["strIngredient" + i]
+                const medida = receita["strMeasure" + i]
+                if (ingrediente && ingrediente.trim() !== "") {
+                    ingredientes.push({ ingrediente: ingrediente, medida: medida || "-" })
+                }
+            }
+
+            div.innerHTML = `<h3>${receita.strMeal}</h3>` + montarTabela(ingredientes, ["Ingrediente", "Medida"], ["ingrediente", "medida"])
+        }catch(err){
+            console.error(err)
+            div.innerHTML = "Não foi possível carregar a tabela."
+        }
+    }
+
+    let botaoTabela = document.getElementById("botaoTabela")
+    botaoTabela.addEventListener("click", () => carregarTabela() )
+</script>
+</html>
