@@ -10,12 +10,13 @@ Cada receita está em seu próprio diretório. A página principal (`index.html`
 
 | Receita | Nome | Diretório |
 |---|---|---|
-| 1 | HTML Básico | [Receita1](Receita1/index.html) |
-| 2 | CSS básico | [Receita2](Receita2/index.html) |
-| 3 | JavaScript básico | [Receita3](Receita3/index.html) |
-| 4 | JavaScript básico 2 | [Receita4](Receita4/index.html) |
-| 5 | JS - Arrow e Callback Functions | [Receita5](Receita5/index.html) |
-| 6 | Objetos JSON | [Receita6](Receita6/indext.html) |
+| 1 | HTML Básico | [Receita 1](Receita1/index.html) |
+| 2 | CSS básico | [Receita 2](Receita2/index.html) |
+| 3 | JavaScript básico | [Receita 3](Receita3/index.html) |
+| 4 | JavaScript básico 2 | [Receita 4](Receita4/index.html) |
+| 5 | JS - Arrow e Callback Functions | [Receita 5](Receita5/index.html) |
+| 6 | Objetos JSON | [Receita 6](Receita6/indext.html) |
+| 7 | Fetch | [Receita 7](Receita7/indext.html) |
 
 ## Como visualizar
 
